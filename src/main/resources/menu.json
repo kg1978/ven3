@@ -1,0 +1,19 @@
+[             
+              {"jog":"-1", "id":"1", "pid":"0", "name":"Okmány kezelés", "url":""}, 
+                 {"jog":"1000", "id":"110", "pid":"1", "name":"Kérelem feldolgozás",     "url":"/kerelem-feldolg"},
+                 {"jog":"1074", "id":"120", "pid":"1", "name":"Elektronikus ügyintézés", "url":"/elektr-ugyint"}, 
+                 {"jog":"1000", "id":"130", "pid":"1", "name":"Illeték kezelés",         "url":"/illetek-kezeles"}, 
+                 {"jog":"1007", "id":"140", "pid":"1", "name":"Okmány rögzítés",         "url":"/okmany-rogzites"}, 
+                 {"jog":"-1", "id":"150",   "pid":"1", "name":"Okmány technikai műveletek","url":"" },
+                    {"jog":"1011", "id":"151", "pid":"150", "name":"Egyedi technikai műveletek",    "url":"/egyedi-technikai"}, 
+                    {"jog":"1012", "id":"152", "pid":"150", "name":"Csoportos technikai műveletek", "url":"/csoportos-technikai"}, 
+                    {"jog":"1013", "id":"153", "pid":"150", "name":"Biankó okmány műveletek",       "url":"/bianko-okmany"}, 
+                    {"jog":"1014", "id":"154", "pid":"150", "name":"EGT-s okmány ellenőrzése",      "url":"/egt-okmany"}, 
+                 {"jog":"-1", "id":"160",   "pid":"1", "name":"Eltiltás, visszavonás", "url":""},
+                    {"jog":"1001", "id":"161", "pid":"160", "name":"Személy és kategória eltiltás", "url":"szem-kat-eltilt"}, 
+                    {"jog":"1002", "id":"162", "pid":"160", "name":"Visszavonás",                   "url":"/visszavonas"},
+                    
+              {"jog":"-1", "id":"2", "pid":"0", "name":"Pontok kezelése", "url":""},
+                 {"jog":"1005", "id":"210", "pid":"2", "name":"Pontok rögzítése",        "url":"/pontok-rogzitese"}, 
+                 {"jog":"1006", "id":"220", "pid":"2", "name":"Utánképzés rögzítése",    "url":"/utankepzes-rogzites"}
+]
