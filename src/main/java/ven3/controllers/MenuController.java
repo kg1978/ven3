@@ -20,9 +20,10 @@ public class MenuController {
       ObjectMapper objectMapper = new ObjectMapper();
 
       try {
-         return objectMapper.readValue(new ClassPathResource("menu.json").getFile(),
+         List<MenuItem> listMenuItems = objectMapper.readValue(new ClassPathResource("menu.json").getFile(),
                new TypeReference<List<MenuItem>>() {
                });
+         return listMenuItems;
       } catch (Exception e) {
          e.printStackTrace();
          throw e;

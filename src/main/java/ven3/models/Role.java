@@ -3,6 +3,8 @@ package ven3.models;
 import java.util.List;
 
 public class Role {
+   public static final int JOGKOD_PUBLIKUS = -1;
+
    private String username;
    private List<String> jogkod;
 

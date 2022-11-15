@@ -1,7 +1,7 @@
 package ven3.models;
 
 public class MenuItem {
-   private int jog;
+   private String jog;
    private int id;
    private int pid;
    private String name;
@@ -10,7 +10,7 @@ public class MenuItem {
    public MenuItem() {
    }
 
-   public MenuItem(int jog, int id, int pid, String name, String url) {
+   public MenuItem(String jog, int id, int pid, String name, String url) {
       super();
       this.jog = jog;
       this.id = id;
@@ -19,11 +19,11 @@ public class MenuItem {
       this.url = url;
    }
 
-   public int getJog() {
+   public String getJog() {
       return jog;
    }
 
-   public void setJog(int jog) {
+   public void setJog(String jog) {
       this.jog = jog;
    }
 
