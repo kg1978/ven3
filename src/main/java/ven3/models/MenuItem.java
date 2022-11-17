@@ -2,15 +2,15 @@ package ven3.models;
 
 public class MenuItem {
    private String jog;
-   private int id;
-   private int pid;
+   private String id;
+   private String pid;
    private String name;
    private String url;
 
    public MenuItem() {
    }
 
-   public MenuItem(String jog, int id, int pid, String name, String url) {
+   public MenuItem(String jog, String id, String pid, String name, String url) {
       super();
       this.jog = jog;
       this.id = id;
@@ -43,19 +43,19 @@ public class MenuItem {
       this.url = url;
    }
 
-   public int getId() {
+   public String getId() {
       return id;
    }
 
-   public void setId(int id) {
+   public void setId(String id) {
       this.id = id;
    }
 
-   public int getPid() {
+   public String getPid() {
       return pid;
    }
 
-   public void setPid(int pid) {
+   public void setPid(String pid) {
       this.pid = pid;
    }
 
