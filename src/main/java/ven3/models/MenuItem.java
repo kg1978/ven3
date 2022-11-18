@@ -1,5 +1,10 @@
 package ven3.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class MenuItem {
    private String jog;
    private String id;
@@ -19,44 +24,8 @@ public class MenuItem {
       this.url = url;
    }
 
-   public String getJog() {
-      return jog;
-   }
-
-   public void setJog(String jog) {
-      this.jog = jog;
-   }
-
-   public String getName() {
-      return name;
-   }
-
-   public void setName(String name) {
-      this.name = name;
-   }
-
-   public String getUrl() {
-      return url;
-   }
-
-   public void setUrl(String url) {
-      this.url = url;
-   }
-
-   public String getId() {
-      return id;
-   }
-
-   public void setId(String id) {
-      this.id = id;
-   }
-
-   public String getPid() {
-      return pid;
-   }
-
-   public void setPid(String pid) {
-      this.pid = pid;
+   public Item getItem() {
+      return new Item(name, url);
    }
 
    @Override

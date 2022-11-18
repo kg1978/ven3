@@ -24,8 +24,8 @@ public class Ven3Application implements CommandLineRunner {
 
    private static Logger LOG = LoggerFactory.getLogger(Ven3Application.class);
 
-   public static List<User> listUsers;
-   public static List<Role> listRoles;
+   public static List<User> listMockUsers;
+   public static List<Role> listMockRoles;
    public static List<MenuItem> listMenuItem;
 
    public static void main(String[] args) {
@@ -39,10 +39,10 @@ public class Ven3Application implements CommandLineRunner {
 
       try {
          ObjectMapper objectMapper = new ObjectMapper();
-         listUsers = objectMapper.readValue(new ClassPathResource("user-mock.json").getFile(),
+         listMockUsers = objectMapper.readValue(new ClassPathResource("user-mock.json").getFile(),
                new TypeReference<List<User>>() {
                });
-         listRoles = objectMapper.readValue(new ClassPathResource("role-mock.json").getFile(),
+         listMockRoles = objectMapper.readValue(new ClassPathResource("role-mock.json").getFile(),
                new TypeReference<List<Role>>() {
                });
          listMenuItem = objectMapper.readValue(new ClassPathResource("menu.json").getFile(),
