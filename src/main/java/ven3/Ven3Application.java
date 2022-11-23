@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ven3.models.MockUser;
 import ven3.models.MenuItem;
 import ven3.models.Role;
-import ven3.models.User;
 
 @SpringBootApplication
 @RestController
@@ -24,9 +24,10 @@ public class Ven3Application implements CommandLineRunner {
 
    private static Logger LOG = LoggerFactory.getLogger(Ven3Application.class);
 
-   public static List<User> listMockUsers;
+   public static List<MockUser> listMockUsers;
    public static List<Role> listMockRoles;
    public static List<MenuItem> listMenuItem;
+   public static String MOCK_USER = "_MOCK";
 
    public static void main(String[] args) {
       LOG.info("STARTING : Spring boot application starting");
@@ -40,7 +41,7 @@ public class Ven3Application implements CommandLineRunner {
       try {
          ObjectMapper objectMapper = new ObjectMapper();
          listMockUsers = objectMapper.readValue(new ClassPathResource("user-mock.json").getFile(),
-               new TypeReference<List<User>>() {
+               new TypeReference<List<MockUser>>() {
                });
          listMockRoles = objectMapper.readValue(new ClassPathResource("role-mock.json").getFile(),
                new TypeReference<List<Role>>() {

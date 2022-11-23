@@ -15,6 +15,7 @@ import ven3.models.MenuItem;
 @RestController
 @RequestMapping("/api/service-menu")
 public class MenuController {
+
    @RequestMapping(value = "/menu", method = RequestMethod.GET, produces = "application/json")
    public List<MenuItem> listMenus() throws Exception {
       ObjectMapper objectMapper = new ObjectMapper();

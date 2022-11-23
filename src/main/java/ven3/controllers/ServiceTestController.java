@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ven3.Ven3Application;
 import ven3.models.Item;
+import ven3.models.MockUser;
 import ven3.models.MenuItem;
 import ven3.models.Role;
-import ven3.models.User;
 
 @RestController
 @RequestMapping("/api/service-test")
 public class ServiceTestController {
 
    @RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
-   public List<User> listUsers() throws Exception {
+   public List<MockUser> listUsers() throws Exception {
       return Ven3Application.listMockUsers;
    }
 
@@ -36,7 +36,7 @@ public class ServiceTestController {
    @RequestMapping(value = "/role/{username}", method = RequestMethod.GET, produces = "application/json")
    public Role roleByUsername(@PathVariable("username") String username) throws Exception {
       try {
-         User user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
+         MockUser user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
          if (user != null) {
             return ControllerUtil.findRoleByUsername(Ven3Application.listMockRoles, username);
          }
@@ -51,7 +51,7 @@ public class ServiceTestController {
    @RequestMapping(value = "/menusitems/{username}", method = RequestMethod.GET, produces = "application/json")
    public List<MenuItem> listMenuItemsByUsername(@PathVariable("username") String username) throws Exception {
       try {
-         User user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
+         MockUser user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
          if (user != null) {
             Role role = ControllerUtil.findRoleByUsername(Ven3Application.listMockRoles, username);
             if (role != null) {
@@ -70,7 +70,7 @@ public class ServiceTestController {
    public List<MenuItem> getSortMenuByUsername(@PathVariable("username") String username) throws Exception {
 
       try {
-         User user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
+         MockUser user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
          if (user != null) {
             Role role = ControllerUtil.findRoleByUsername(Ven3Application.listMockRoles, username);
             if (role != null) {
@@ -92,7 +92,7 @@ public class ServiceTestController {
    public List<Item> getMenuByUsername(@PathVariable("username") String username) throws Exception {
 
       try {
-         User user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
+         MockUser user = ControllerUtil.findUserByUsername(Ven3Application.listMockUsers, username);
          if (user != null) {
             Role role = ControllerUtil.findRoleByUsername(Ven3Application.listMockRoles, username);
             if (role != null) {

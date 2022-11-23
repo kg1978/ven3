@@ -8,15 +8,15 @@ import java.util.Map;
 import ven3.models.Item;
 import ven3.models.MenuItem;
 import ven3.models.Role;
-import ven3.models.User;
+import ven3.models.MockUser;
 
 public class ControllerUtil {
    // private static Logger LOG = LoggerFactory.getLogger(ControllerUtil.class);
 
-   public static User findUserByUsername(List<User> listUsers, String username) {
+   public static MockUser findUserByUsername(List<MockUser> listUsers, String username) {
       if (username != null && listUsers != null) {
          String un = username.trim();
-         for (User u : listUsers) {
+         for (MockUser u : listUsers) {
             if (u.getUsername().equals(un))
                return u;
          }
