@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ven3.controllers.security.JwtUtils;
-import ven3.controllers.security.services.MockUserDetailsImpl;
+import ven3.controllers.security.jwt.JwtUtils;
+import ven3.controllers.security.services.UserDetailsImpl;
 import ven3.request.MockUserLoginRequest;
 import ven3.response.JwtResponse;
 
@@ -29,21 +29,13 @@ public class ServiceController {
 
    @PostMapping("/signin")
    public ResponseEntity<?> authenticateUser(@Valid @RequestBody MockUserLoginRequest loginRequest) {
-
-      /*
-       * Authentication authentication = null; /* String username =
-       * loginRequest.getUsername(); /* if (username != null &&
-       * username.startsWith(Ven3Application.MOCK_USER)) { authenticationManager
-       * .authenticate(new MockAuthenticationProvider(loginRequest.getUsername(),
-       * loginRequest.getPassword())); } else {
-       */
       Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
       SecurityContextHolder.getContext().setAuthentication(authentication);
       String jwt = jwtUtils.generateJwtToken(authentication);
 
-      MockUserDetailsImpl userDetails = (MockUserDetailsImpl) authentication.getPrincipal();
+      UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
       return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername()));
    }

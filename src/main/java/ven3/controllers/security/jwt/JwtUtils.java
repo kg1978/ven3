@@ -1,4 +1,4 @@
-package ven3.controllers.security;
+package ven3.controllers.security.jwt;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-import ven3.controllers.security.services.MockUserDetailsImpl;
+import ven3.controllers.security.services.UserDetailsImpl;
 
 @Component
 public class JwtUtils {
@@ -27,7 +27,7 @@ public class JwtUtils {
    private int jwtExpirationMs;
 
    public String generateJwtToken(Authentication authentication) {
-      MockUserDetailsImpl userPrincipal = (MockUserDetailsImpl) authentication.getPrincipal();
+      UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
       return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
             .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))

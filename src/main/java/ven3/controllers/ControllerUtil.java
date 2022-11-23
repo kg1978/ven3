@@ -7,8 +7,8 @@ import java.util.Map;
 
 import ven3.models.Item;
 import ven3.models.MenuItem;
-import ven3.models.Role;
 import ven3.models.MockUser;
+import ven3.models.Role;
 
 public class ControllerUtil {
    // private static Logger LOG = LoggerFactory.getLogger(ControllerUtil.class);
@@ -106,7 +106,6 @@ public class ControllerUtil {
          map.put(m.getId(), it);
          map.get(m.getPid()).addItem(it);
       }
-
       return item.getSubmenu();
    }
 }
