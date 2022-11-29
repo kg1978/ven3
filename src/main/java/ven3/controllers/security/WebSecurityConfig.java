@@ -59,6 +59,7 @@ public class WebSecurityConfig {
             .antMatchers("/api/service/**").permitAll()
             .antMatchers("/api/service-menu/**").permitAll()
             .antMatchers("/api/service-test/**").permitAll()
+            .antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
             .anyRequest().authenticated();
 
       http.authenticationProvider(authenticationProvider());

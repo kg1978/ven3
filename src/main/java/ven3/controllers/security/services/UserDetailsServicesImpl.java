@@ -3,10 +3,12 @@ package ven3.controllers.security.services;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import ven3.Ven3Application;
 import ven3.models.MockUser;
 
+@Service
 public class UserDetailsServicesImpl implements UserDetailsService {
 
    @Override
