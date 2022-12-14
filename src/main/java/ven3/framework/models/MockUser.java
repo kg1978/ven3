@@ -1,4 +1,4 @@
-package ven3.models;
+package ven3.framework.models;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

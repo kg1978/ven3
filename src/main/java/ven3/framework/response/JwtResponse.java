@@ -1,4 +1,4 @@
-package ven3.response;
+package ven3.framework.response;
 
 public class JwtResponse {
    private String token;

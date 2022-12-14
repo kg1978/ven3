@@ -1,4 +1,4 @@
-package ven3.models;
+package ven3.framework.models;
 
 import java.util.ArrayList;
 import java.util.List;

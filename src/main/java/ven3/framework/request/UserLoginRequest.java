@@ -1,4 +1,4 @@
-package ven3.request;
+package ven3.framework.request;
 
 import javax.validation.constraints.NotBlank;
 
@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class MockUserLoginRequest {
+public class UserLoginRequest {
    @NotBlank
    private String username;
 

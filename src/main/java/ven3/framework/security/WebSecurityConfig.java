@@ -1,4 +1,4 @@
-package ven3.controllers.security;
+package ven3.framework.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,9 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import ven3.controllers.security.jwt.AuthEntryPointJwt;
-import ven3.controllers.security.jwt.AuthTokenFilter;
-import ven3.controllers.security.services.UserDetailsServicesImpl;
+import ven3.framework.security.jwt.AuthEntryPointJwt;
+import ven3.framework.security.jwt.AuthTokenFilter;
+import ven3.framework.security.services.UserDetailsServicesImpl;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -43,6 +43,12 @@ public class WebSecurityConfig {
    }
 
    @Bean
+   public CustomAuthenticationProvider customAuthenticationProvider() {
+      CustomAuthenticationProvider authenticationProvider = new CustomAuthenticationProvider();
+      return authenticationProvider;
+   }
+
+   @Bean
    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
       return authConfig.getAuthenticationManager();
    }
@@ -56,11 +62,11 @@ public class WebSecurityConfig {
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
       http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-            .antMatchers("/api/service/**").permitAll()
+            .antMatchers("/api/service-auth/**").permitAll()
             .antMatchers("/api/service-menu/**").permitAll()
             .antMatchers("/api/service-test/**").permitAll()
-            .antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-            .anyRequest().authenticated();
+            .antMatchers("/swagger-ui/**", "/v3/api-docs/**")
+            .permitAll().anyRequest().authenticated();
 
       http.authenticationProvider(authenticationProvider());
 

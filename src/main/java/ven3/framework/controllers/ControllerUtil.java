@@ -1,14 +1,16 @@
-package ven3.controllers;
+package ven3.framework.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ven3.models.Item;
-import ven3.models.MenuItem;
-import ven3.models.MockUser;
-import ven3.models.Role;
+import ven3.Ven3Application;
+import ven3.framework.models.Item;
+import ven3.framework.models.MenuItem;
+import ven3.framework.models.MockUser;
+import ven3.framework.models.Role;
 
 public class ControllerUtil {
    // private static Logger LOG = LoggerFactory.getLogger(ControllerUtil.class);
@@ -107,5 +109,20 @@ public class ControllerUtil {
          map.get(m.getPid()).addItem(it);
       }
       return item.getSubmenu();
+   }
+
+   public static List<Item> getMenuByMockUsername(String username) {
+      MockUser user = findUserByUsername(Ven3Application.listMockUsers, username);
+      if (user != null) {
+         Role role = findRoleByUsername(Ven3Application.listMockRoles, username);
+         if (role != null) {
+            List<MenuItem> list = getMenuItemsByRole(Ven3Application.listMenuItem, role);
+            Collections.sort(list, (o1, o2) -> o1.getId().compareTo(o2.getId()));
+            List<MenuItem> listOptimal = getOptimalMenuItems(list);
+            return getMenu(listOptimal);
+         }
+      }
+
+      return null;
    }
 }

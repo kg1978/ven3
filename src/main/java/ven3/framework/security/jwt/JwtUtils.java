@@ -1,12 +1,15 @@
-package ven3.controllers.security.jwt;
+package ven3.framework.security.jwt;
 
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -14,7 +17,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-import ven3.controllers.security.services.UserDetailsImpl;
+import ven3.framework.security.services.UserDetailsImpl;
 
 @Component
 public class JwtUtils {
@@ -26,7 +29,18 @@ public class JwtUtils {
    @Value("${ven3.app.jwtExpirationMs}")
    private int jwtExpirationMs;
 
+   public String parseJwt(HttpServletRequest request) {
+      String headerAuth = request.getHeader("Authorization");
+
+      if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+         return headerAuth.substring(7, headerAuth.length());
+      }
+
+      return null;
+   }
+
    public String generateJwtToken(Authentication authentication) {
+
       UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
       return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())

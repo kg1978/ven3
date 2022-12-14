@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,12 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ven3.models.MockUser;
-import ven3.models.MenuItem;
-import ven3.models.Role;
+import ven3.framework.models.MenuItem;
+import ven3.framework.models.MockUser;
+import ven3.framework.models.Role;
+import ven3.framework.security.ExternalServiceAuthentication;
+import ven3.service.AuthService;
 
 @SpringBootApplication
 @RestController
+@Configuration
 public class Ven3Application implements CommandLineRunner {
 
    private static Logger LOG = LoggerFactory.getLogger(Ven3Application.class);
@@ -27,11 +32,17 @@ public class Ven3Application implements CommandLineRunner {
    public static List<MockUser> listMockUsers;
    public static List<Role> listMockRoles;
    public static List<MenuItem> listMenuItem;
-   public static String MOCK_USER = "_MOCK";
+   public static String MOCK_USER = "mock_";
 
    public static void main(String[] args) {
       LOG.info("STARTING : Spring boot application starting");
       SpringApplication.run(Ven3Application.class, args);
+   }
+
+   @Bean
+   public ExternalServiceAuthentication externalServiceAuthentication() {
+      ExternalServiceAuthentication externalServiceAuthentication = new AuthService();
+      return externalServiceAuthentication;
    }
 
    @Override

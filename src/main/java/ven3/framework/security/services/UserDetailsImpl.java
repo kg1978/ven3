@@ -1,4 +1,4 @@
-package ven3.controllers.security.services;
+package ven3.framework.security.services;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ven3.models.MockUser;
+import ven3.framework.models.MockUser;
 
 public class UserDetailsImpl implements UserDetails {
    private static final long serialVersionUID = 1L;
@@ -70,5 +70,10 @@ public class UserDetailsImpl implements UserDetails {
          return false;
       UserDetailsImpl user = (UserDetailsImpl) o;
       return Objects.equals(username, user.username);
+   }
+
+   @Override
+   public String toString() {
+      return "UserDetailsImpl [username=" + username + ", password=" + password + "]";
    }
 }

@@ -1,4 +1,4 @@
-package ven3.controllers.security.jwt;
+package ven3.framework.security.jwt;
 
 import java.io.IOException;
 import java.util.HashMap;
