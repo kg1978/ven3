@@ -1,6 +1,6 @@
 [
-  { "username":"mock_user0", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve."},
-  { "username":"mock_user1", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve."},
-  { "username":"mock_user2", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve."},
-  { "username":"mock_user3", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve."}
+  { "username":"mock_user0", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve.", "sid":"gfdgdfgfd334rsfsd_xcger"},
+  { "username":"mock_user1", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve.", "sid":"gfdgdfgfd334rsfsd_xcger"},
+  { "username":"mock_user2", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve.", "sid":"gfdgdfgfd334rsfsd_xcger"},
+  { "username":"mock_user3", "password":"$2a$10$Dgd2yJjw3HUqo4axM3PIZ.dj07jV1l1sx0LF36gh..5rHubqwAve.", "sid":"gfdgdfgfd334rsfsd_xcger"}
 ]

@@ -1,0 +1,11 @@
+JogFunc
+	INITUSERINFO
+		// Adatok a FELH tablabol
+		select fel_id,fel_szkod,SZE_NEV,FEL_NEV,SZE_TIPUS,SZE_MBKOD,SZE_ISZKOD from 		jo_aufelh, ke_szerv
+		// Jogkódok értékei tablabol
+		select csj_jogkod from 																jo_engcsop, jo_csopjog
+		// Adatok az OI tablabol
+		select OI_NEV,OI_MKODBET,OI_SZIGSZKOD from											ke_oi
+		select sze_szkod, sze_nev, sze_mbkod from											jo_aufelh, ke_szerv
+		select sze_szkod, sze_nev, sze_mbkod from											jo_aufelh, ke_szerv, ke_szervszerv
+		
