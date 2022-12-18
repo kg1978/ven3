@@ -6,29 +6,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import legacy.ven3.models.db.keret.KeOI;
-import legacy.ven3.repository.KeOIRepository;
+import legacy.ven3.models.db.keret.KeSzervSzerv;
+import legacy.ven3.repository.KeSzervSzervRepository;
 
 @Service
-public class KeOIMockService {
+public class KeSzervSzervMockService {
    @Autowired
-   KeOIRepository repo;
+   KeSzervSzervRepository repo;
 
-   public List<KeOI> getAll() {
-      List<KeOI> list = new ArrayList<KeOI>();
+   public List<KeSzervSzerv> getAll() {
+      List<KeSzervSzerv> list = new ArrayList<KeSzervSzerv>();
       repo.findAll().forEach(e -> list.add(e));
       return list;
    }
 
-   public KeOI getById(String id) {
+   public KeSzervSzerv getById(int id) {
       return repo.findById(id).get();
    }
 
-   public void saveOrUpdate(KeOI d) {
+   public void saveOrUpdate(KeSzervSzerv d) {
       repo.save(d);
    }
 
-   public void delete(String id) {
+   public void delete(int id) {
       repo.deleteById(id);
    }
 }

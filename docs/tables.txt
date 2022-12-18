@@ -1,11 +1,165 @@
-JogFunc
-	INITUSERINFO
-		// Adatok a FELH tablabol
-		select fel_id,fel_szkod,SZE_NEV,FEL_NEV,SZE_TIPUS,SZE_MBKOD,SZE_ISZKOD from 		jo_aufelh, ke_szerv
-		// Jogkódok értékei tablabol
-		select csj_jogkod from 																jo_engcsop, jo_csopjog
-		// Adatok az OI tablabol
-		select OI_NEV,OI_MKODBET,OI_SZIGSZKOD from											ke_oi
-		select sze_szkod, sze_nev, sze_mbkod from											jo_aufelh, ke_szerv
-		select sze_szkod, sze_nev, sze_mbkod from											jo_aufelh, ke_szerv, ke_szervszerv
-		
+CREATE TABLE keret.ke_oi (
+    oi_oiszkod       VARCHAR2(6 BYTE) NOT NULL,
+    oi_mkodbet       VARCHAR2(3 BYTE) NOT NULL,
+    oi_nev           VARCHAR2(60 BYTE) NOT NULL,
+    oi_szekh_telnev  VARCHAR2(27 BYTE),
+    oi_szekh_taz     NUMBER(5),
+    oi_musz          VARCHAR2(6 BYTE),
+    oi_szervezet     NUMBER(6),
+    oi_szigszkod     VARCHAR2(6 BYTE),
+    oi_ervtol        DATE NOT NULL,
+    oi_ervig         DATE,
+    oi_cim           VARCHAR2(60 BYTE),
+    oi_telefon       VARCHAR2(30 BYTE),
+    oi_fax           VARCHAR2(30 BYTE),
+    oi_pir           VARCHAR2(5 BYTE),
+    oi_kozt          VARCHAR2(25 BYTE),
+    oi_ktjell        VARCHAR2(20 BYTE),
+    oi_hsz           VARCHAR2(11 BYTE),
+    oi_ep            VARCHAR2(4 BYTE),
+    oi_lh            VARCHAR2(4 BYTE),
+    oi_szint         VARCHAR2(2 BYTE),
+    oi_ajto          VARCHAR2(4 BYTE),
+    oi_gcim          VARCHAR2(60 BYTE),
+    oi_gtelefon      VARCHAR2(30 BYTE),
+    oi_gfax          VARCHAR2(30 BYTE),
+    oi_okmnev        VARCHAR2(40 BYTE) NOT NULL,
+    oi_mddat         DATE,
+    oi_mduser        NUMBER(9),
+    oi_hi_id         NUMBER(5),
+    oi_jaras         VARCHAR2(6 BYTE),
+    oi_kiemelt       VARCHAR2(2 BYTE),
+    oi_telep_kiemelt VARCHAR2(2 CHAR)
+);
+
+-------------------------------------------------------------------------------
+
+CREATE TABLE keret.ke_szerv (
+    sze_szkod         VARCHAR2(6 BYTE) NOT NULL,
+    sze_tipus         NUMBER(2) NOT NULL,
+    sze_jelleg        NUMBER(2) NOT NULL,
+    sze_allapot       NUMBER(2) NOT NULL,
+    sze_szekh_taz     NUMBER(5),
+    sze_szekh_mbkod   VARCHAR2(3 BYTE),
+    sze_ervtol        DATE NOT NULL,
+    sze_ervig         DATE,
+    sze_iszkod        VARCHAR2(6 BYTE) NOT NULL,
+    sze_avnyaz        VARCHAR2(9 BYTE),
+    sze_mbkod         VARCHAR2(3 BYTE),
+    sze_nev           VARCHAR2(100 BYTE),
+    sze_cim           VARCHAR2(70 BYTE),
+    sze_pir           VARCHAR2(4 BYTE),
+    sze_szlszkod      NUMBER(6),
+    sze_telnev        VARCHAR2(27 BYTE),
+    sze_mduser        NUMBER(9),
+    sze_mddat         DATE,
+    sze_nevszla       VARCHAR2(100 BYTE),
+    sze_pirszla       VARCHAR2(4 BYTE),
+    sze_telnevszla    VARCHAR2(27 BYTE),
+    sze_cimszla       VARCHAR2(70 BYTE),
+    sze_szlaszla      VARCHAR2(24 BYTE),
+    sze_teljesnev1    VARCHAR2(55 BYTE),
+    sze_teljesnev2    VARCHAR2(55 BYTE),
+    sze_teljesnev3    VARCHAR2(55 BYTE),
+    sze_teljesnev4    VARCHAR2(55 BYTE),
+    sze_fix_nev       VARCHAR2(100 BYTE),
+    sze_merit         VARCHAR2(4 BYTE),
+    sze_fk_id         NUMBER(9),
+    sze_adoszam       VARCHAR2(11 BYTE),
+    sze_kiemelt       VARCHAR2(2 BYTE),
+    sze_telep_kiemelt VARCHAR2(2 CHAR)
+);
+
+COMMENT ON COLUMN keret.ke_szerv.sze_tipus IS
+    'AK_DOMAIN 250';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_iszkod IS
+    'Igazgatási székhely szervkódja';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_avnyaz IS
+    'Adatvédelmi nyilvántartási azonosító';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_mbkod IS
+    'A szerv mely megyéhez tartozik illetékesség szempontjából';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_nev IS
+    'A szerv neve';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_cim IS
+    'Szerv címe: közterület + közterület jelleg + HÉLSZA';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_pir IS
+    'Szerv címe: postai irányítószám';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_szlszkod IS
+    'A szerv SZL-es szervkódja';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_nevszla IS
+    'A számlát befogadó szerv neve';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_pirszla IS
+    'A számlát befogadó szerv irányítószáma';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_telnevszla IS
+    'A számlát befogadó szerv települése';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_cimszla IS
+    'A számlát befogadó szerv címe';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_szlaszla IS
+    'A számlázó szerv bankszámlaszáma';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_teljesnev1 IS
+    'A szerv hivatalos neve - 1-ső rész';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_teljesnev2 IS
+    'A szerv hivatalos neve - 2. rész';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_teljesnev3 IS
+    'A szerv hivatalos neve - 3. rész (körjegyz. nem használja)';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_teljesnev4 IS
+    'A szerv hivatalos neve - 4. rész (körjegyz. nem használja)';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_fix_nev IS
+    'ASZA környezet számára szükséges fix név';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_kiemelt IS
+    'Járásban okmányiroda kiemelt-e jelzo';
+
+COMMENT ON COLUMN keret.ke_szerv.sze_telep_kiemelt IS
+    'Településen okmányiroda/KAB kiemelt-e jelző';
+    
+-------------------------------------------------------------------------------
+
+CREATE TABLE keret.ke_szervszerv (
+    sz_id       NUMBER(10) NOT NULL,
+    sz_kapcstip VARCHAR2(2 BYTE) NOT NULL,
+    sz_ervig    DATE,
+    sz_ervtol   DATE NOT NULL,
+    sz_szkod    VARCHAR2(6 BYTE) NOT NULL,
+    sz_fszkod   VARCHAR2(6 BYTE) NOT NULL,
+    sz_mduser   NUMBER(9),
+    sz_mddat    DATE,
+    sz_torl     DATE
+);
+
+COMMENT ON COLUMN keret.ke_szervszerv.sz_id IS
+    'Kapcsolat egyedi azonosítója';
+
+COMMENT ON COLUMN keret.ke_szervszerv.sz_kapcstip IS
+    'Kapcsolat típusa (domain 266)';
+
+COMMENT ON COLUMN keret.ke_szervszerv.sz_ervig IS
+    'Kapcsolat érvényességének vége';
+
+COMMENT ON COLUMN keret.ke_szervszerv.sz_ervtol IS
+    'Kapcsolat érvényességének kezdete';
+
+COMMENT ON COLUMN keret.ke_szervszerv.sz_szkod IS
+    'Alárendelt szerv szervkódja';
+
+COMMENT ON COLUMN keret.ke_szervszerv.sz_fszkod IS
+    'Felettes szerv szervkódja';
+    
+-------------------------------------------------------------------------------

@@ -15,28 +15,28 @@ import legacy.mock.servises.ke.KeOIMockService;
 import legacy.ven3.models.db.keret.KeOI;
 
 @RestController
-@RequestMapping("/api/service-mock/keoi")
-public class KeOIMockContorrer {
+@RequestMapping("/api/service-mock/ke/oi")
+public class KeOIMockContoroller {
    @Autowired
    KeOIMockService service;
 
    @GetMapping(value = "/all", produces = "application/json")
-   private List<KeOI> getAllStudent() {
+   private List<KeOI> getAll() {
       return service.getAll();
    }
 
-   @GetMapping(value = "/keoi/{id}", produces = "application/json")
-   private KeOI getStudent(@PathVariable("id") String id) {
+   @GetMapping(value = "/get/{id}", produces = "application/json")
+   private KeOI get(@PathVariable("id") String id) {
       return service.getById(id);
    }
 
-   @DeleteMapping("/keoi/{id}")
-   private void deleteStudent(@PathVariable("id") String id) {
+   @DeleteMapping("/del/{id}")
+   private void delete(@PathVariable("id") String id) {
       service.delete(id);
    }
 
-   @PostMapping("/keoi")
-   private String saveStudent(@RequestBody KeOI keOI) {
+   @PostMapping("/save")
+   private String save(@RequestBody KeOI keOI) {
       service.saveOrUpdate(keOI);
       return keOI.oi_oiszkod;
    }
