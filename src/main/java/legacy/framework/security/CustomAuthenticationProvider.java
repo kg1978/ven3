@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import legacy.framework.security.exceptions.UnPwException;
+import legacy.framework.security.exceptions.UserExpiredException;
 import legacy.framework.security.services.UserDetailsImpl;
 
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -27,13 +29,20 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
       LOG.info("{" + username + ":" + password + "}");
 
       if (username != null && password != null && !username.isEmpty() && !password.isEmpty()) {
-         if (externalServiceAuthentication.authentication(username, password)) {
-            UserDetails user = new UserDetailsImpl(username, password);
-            return createSuccessfulAuthentication(authentication, user);
+
+         try {
+            if (externalServiceAuthentication.authentication(username, password)) {
+               UserDetails user = new UserDetailsImpl(username, password);
+               return createSuccessfulAuthentication(authentication, user);
+            }
+         } catch (UnPwException e) {
+            throw new BadCredentialsException("UnPwException exception");
+         } catch (UserExpiredException e) {
+            throw new BadCredentialsException("UserExpiredException exception");
          }
       }
 
-      throw new BadCredentialsException("invalid login details");
+      throw new BadCredentialsException("Invalid login details");
    }
 
    private Authentication createSuccessfulAuthentication(final Authentication authentication, final UserDetails user) {

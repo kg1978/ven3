@@ -37,8 +37,14 @@ public class Application implements CommandLineRunner {
       SpringApplication.run(Application.class, args);
    }
 
-   @Value("${mock.services}")
-   private boolean mockServices;
+   @Value("${mock.services.auth}")
+   private boolean mockServicesAuth;
+
+   @Value("${mock.services.jo}")
+   private boolean mockServicesJo;
+
+   @Value("${mock.services.ke}")
+   private boolean mockServicesKe;
 
    @Autowired
    LoadJson2Db loadJson2Db;
@@ -60,16 +66,25 @@ public class Application implements CommandLineRunner {
                new TypeReference<List<MenuItem>>() {
                });
 
-         if (mockServices) {
-            loadJson2Db.init();
-
-            listMockUsers = objectMapper.readValue(new ClassPathResource("user-mock.json").getFile(),
-                  new TypeReference<List<MockUser>>() {
-                  });
-            listMockRoles = objectMapper.readValue(new ClassPathResource("role-mock.json").getFile(),
-                  new TypeReference<List<Role>>() {
-                  });
+         if (mockServicesAuth) {
+            loadJson2Db.initAuth();
          }
+
+         if (mockServicesJo) {
+            loadJson2Db.initJo();
+         }
+
+         if (mockServicesKe) {
+            loadJson2Db.initKe();
+         }
+
+         /*
+          * List<MockUser> listMockUsers = objectMapper.readValue(new
+          * ClassPathResource("user-mock.json").getFile(), new
+          * TypeReference<List<MockUser>>() { }); listMockRoles =
+          * objectMapper.readValue(new ClassPathResource("role-mock.json").getFile(), new
+          * TypeReference<List<Role>>() { }); }
+          */
 
       } catch (Exception e) {
          e.printStackTrace();

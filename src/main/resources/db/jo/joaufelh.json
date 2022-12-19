@@ -1,0 +1,31 @@
+[
+{
+  "fel_id": 999,
+  "fel_felhazon": "user0",
+  "fel_szkod": "szko01",
+  "fel_nev": "Kis Balázs lejárt",
+  "fel_ervtol": "2020-12-19T10:18:19.466Z",
+  "fel_ervig": "2021-12-19T10:18:19.466Z",
+  "fel_forras": "O"
+}
+,
+{
+  "fel_id": 1000,
+  "fel_felhazon": "user1",
+  "fel_szkod": "szko01",
+  "fel_nev": "Kis Balázs 01",
+  "fel_ervtol": "2020-12-19T10:18:19.466Z",
+  "fel_ervig": "2032-12-19T10:18:19.466Z",
+  "fel_forras": "O"
+}
+,
+{
+  "fel_id": 1001,
+  "fel_felhazon": "user2",
+  "fel_szkod": "szko02",
+  "fel_nev": "Kis Balázs 02",
+  "fel_ervtol": "2020-12-19T10:18:19.466Z",
+  "fel_ervig": "2032-12-19T10:18:19.466Z",
+  "fel_forras": "O"
+}
+]

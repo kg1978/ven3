@@ -38,7 +38,7 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 	
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
-	
+	implementation 'cryptix:cryptix:3.2.0'
 	implementation 'com.h2database:h2:2.1.214'
 }
 

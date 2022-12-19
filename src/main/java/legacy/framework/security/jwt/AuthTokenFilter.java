@@ -31,14 +31,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
          throws ServletException, IOException {
       try {
-         LOG.info("doFilterInternal start");
+         LOG.debug("doFilterInternal start");
 
          String jwt = jwtUtils.parseJwt(request);
          if (jwtUtils.validateJwtToken(jwt)) {
             String username = jwtUtils.getUserNameFromJwtToken(jwt);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-            LOG.info(userDetails.toString());
+            LOG.debug(userDetails.toString());
 
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
                   null, userDetails.getAuthorities());
@@ -46,7 +46,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            LOG.info("doFilterInternal end");
+            LOG.debug("doFilterInternal end");
          }
       } catch (Exception e) {
          LOG.error("Cannot set user authentication: {}", e);

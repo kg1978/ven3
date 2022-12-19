@@ -58,7 +58,6 @@ public class JwtUtils {
 
    public boolean validateJwtToken(String authToken) {
       if (authToken == null) {
-         LOG.error("JWT is NULL");
          return false;
       }
 
