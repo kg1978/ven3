@@ -45,7 +45,6 @@ public class LoginController {
    @PostMapping("/signin")
    public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserLoginRequest loginRequest) {
       LOG.info(loginRequest.getUsername() + " " + loginRequest.getPassword());
-      LOG.info(encoder.encode(loginRequest.getPassword()));
 
       Authentication authentication = null;
       UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),

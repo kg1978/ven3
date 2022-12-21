@@ -16,11 +16,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import legacy.framework.utils.Util;
 import legacy.ven3.models.db.auth.UnPwAuth;
 import legacy.ven3.models.db.jo.JoAufelh;
+import legacy.ven3.models.db.jo.JoEngcsop;
+import legacy.ven3.models.db.jo.JoJogcsop;
 import legacy.ven3.models.db.ke.KeOI;
 import legacy.ven3.models.db.ke.KeSzerv;
 import legacy.ven3.models.db.ke.KeSzervSzerv;
 import legacy.ven3.servises.db.auth.UnPwAuthService;
 import legacy.ven3.servises.db.jo.JoAufelhService;
+import legacy.ven3.servises.db.jo.JoEngcsopService;
+import legacy.ven3.servises.db.jo.JoJogcsopService;
 import legacy.ven3.servises.db.ke.KeOIService;
 import legacy.ven3.servises.db.ke.KeSzervService;
 import legacy.ven3.servises.db.ke.KeSzervSzervService;
@@ -40,16 +44,22 @@ public class LoadJson2Db {
    UnPwAuthService unPwAuthService;
 
    @Autowired
-   JoAufelhService joAufelhMockService;
+   JoAufelhService joAufelhService;
 
    @Autowired
-   KeOIService keOIMockService;
+   JoEngcsopService joEngcsopService;
 
    @Autowired
-   KeSzervService keSzervMockService;
+   JoJogcsopService joJogcsopService;
 
    @Autowired
-   KeSzervSzervService keSzervSzervMockService;
+   KeOIService keOIService;
+
+   @Autowired
+   KeSzervService keSzervService;
+
+   @Autowired
+   KeSzervSzervService keSzervSzervService;
 
    public void initAuth() throws StreamReadException, DatabindException, IOException {
       ObjectMapper objectMapper = new ObjectMapper();
@@ -67,8 +77,20 @@ public class LoadJson2Db {
       List<JoAufelh> JoAufelh = objectMapper.readValue(util.getFile(JO_PREFIX + "joaufelh.json"),
             new TypeReference<List<JoAufelh>>() {
             });
-      joAufelhMockService.saveAll(JoAufelh);
+      joAufelhService.saveAll(JoAufelh);
       LOG.debug("loaded:" + JoAufelh);
+
+      List<JoEngcsop> JoEngcsop = objectMapper.readValue(util.getFile(JO_PREFIX + "joengcsop.json"),
+            new TypeReference<List<JoEngcsop>>() {
+            });
+      joEngcsopService.saveAll(JoEngcsop);
+      LOG.debug("loaded:" + JoEngcsop);
+
+      List<JoJogcsop> JoJogcsop = objectMapper.readValue(util.getFile(JO_PREFIX + "jojogcsop.json"),
+            new TypeReference<List<legacy.ven3.models.db.jo.JoJogcsop>>() {
+            });
+      joJogcsopService.saveAll(JoJogcsop);
+      LOG.debug("loaded:" + JoJogcsop);
    }
 
    public void initKe() throws StreamReadException, DatabindException, IOException {
@@ -76,19 +98,19 @@ public class LoadJson2Db {
 
       List<KeOI> KeOI = objectMapper.readValue(util.getFile(KE_PREFIX + "keoi.json"), new TypeReference<List<KeOI>>() {
       });
-      keOIMockService.saveAll(KeOI);
+      keOIService.saveAll(KeOI);
       LOG.debug("loaded:" + KeOI);
 
       List<KeSzerv> KeSzerv = objectMapper.readValue(util.getFile(KE_PREFIX + "keszerv.json"),
             new TypeReference<List<KeSzerv>>() {
             });
-      keSzervMockService.saveAll(KeSzerv);
+      keSzervService.saveAll(KeSzerv);
       LOG.debug("loaded:" + KeSzerv);
 
       List<KeSzervSzerv> KeSzervSzerv = objectMapper.readValue(util.getFile(KE_PREFIX + "keszervszerv.json"),
             new TypeReference<List<KeSzervSzerv>>() {
             });
-      keSzervSzervMockService.saveAll(KeSzervSzerv);
+      keSzervSzervService.saveAll(KeSzervSzerv);
       LOG.debug("loaded:" + KeSzervSzerv);
    }
 }

@@ -14,15 +14,11 @@ import legacy.framework.models.Item;
 import legacy.framework.models.MenuItem;
 import legacy.framework.models.MockUser;
 import legacy.framework.models.Role;
-import legacy.framework.utils.ControllerUtil;
 import legacy.framework.utils.Util;
 
 @RestController
 @RequestMapping("/api/service-test")
 public class ServiceTestController {
-
-   @Autowired
-   private ControllerUtil controllerUtil;
 
    @Autowired
    private Util util;
@@ -46,9 +42,9 @@ public class ServiceTestController {
    public Role roleByUsername(@PathVariable("username") String username) {
       try {
          if (username != null && username.startsWith(Application.MOCK_USER)) {
-            MockUser user = controllerUtil.findUserByUsername(Application.listMockUsers, username);
+            MockUser user = util.findUserByUsername(Application.listMockUsers, username);
             if (user != null) {
-               return controllerUtil.findRoleByUsername(Application.listMockRoles, username);
+               return util.findRoleByUsername(Application.listMockRoles, username);
             }
          }
 
@@ -63,11 +59,11 @@ public class ServiceTestController {
    public List<MenuItem> listMenuItemsByUsername(@PathVariable("username") String username) throws Exception {
       try {
          if (username != null && username.startsWith(Application.MOCK_USER)) {
-            MockUser user = controllerUtil.findUserByUsername(Application.listMockUsers, username);
+            MockUser user = util.findUserByUsername(Application.listMockUsers, username);
             if (user != null) {
-               Role role = controllerUtil.findRoleByUsername(Application.listMockRoles, username);
+               Role role = util.findRoleByUsername(Application.listMockRoles, username);
                if (role != null) {
-                  return controllerUtil.getMenuItemsByRole(Application.listMenuItem, role);
+                  return util.getMenuItemsByRole(Application.listMenuItem, role);
                }
             }
          }
@@ -84,11 +80,11 @@ public class ServiceTestController {
 
       try {
          if (username != null && username.startsWith(Application.MOCK_USER)) {
-            MockUser user = controllerUtil.findUserByUsername(Application.listMockUsers, username);
+            MockUser user = util.findUserByUsername(Application.listMockUsers, username);
             if (user != null) {
-               Role role = controllerUtil.findRoleByUsername(Application.listMockRoles, username);
+               Role role = util.findRoleByUsername(Application.listMockRoles, username);
                if (role != null) {
-                  List<MenuItem> list = controllerUtil.getMenuItemsByRole(Application.listMenuItem, role);
+                  List<MenuItem> list = util.getMenuItemsByRole(Application.listMenuItem, role);
                   Collections.sort(list, (o1, o2) -> o1.getId().compareTo(o2.getId()));
                   return util.getOptimalMenuItems(list);
                }
@@ -104,6 +100,6 @@ public class ServiceTestController {
 
    @RequestMapping(value = "/menu/{username}", method = RequestMethod.GET, produces = "application/json")
    public List<Item> getMenuByUsername(@PathVariable("username") String username) {
-      return controllerUtil.getMenuByMockUsername(username);
+      return util.getMenuByMockUsername(username);
    }
 }
