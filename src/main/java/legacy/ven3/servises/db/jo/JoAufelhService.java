@@ -2,6 +2,7 @@ package legacy.ven3.servises.db.jo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import legacy.ven3.repository.jo.JoAufelhRepository;
 
 @Service
 public class JoAufelhService {
+   private static String OKMANYIRODA_FORRAS = "O";
 
    @Value("${mock.services.jo}")
    private boolean mock;
@@ -27,7 +29,7 @@ public class JoAufelhService {
       return list;
    }
 
-   public JoAufelh getById(int id) {
+   public JoAufelh getById(int id) throws NoSuchElementException {
       return repo.findById(id).get();
    }
 
@@ -48,4 +50,13 @@ public class JoAufelhService {
          repo.deleteById(id);
       }
    }
+
+   public JoAufelh getByFelhazon(String felhazon) throws NoSuchElementException {
+      return repo.findByFelhazon(felhazon).get();
+   }
+
+   public JoAufelh getByFelhazonOkmany(String id) throws NoSuchElementException {
+      return repo.findByFelhazonAndForras(id, OKMANYIRODA_FORRAS).get();
+   }
+
 }

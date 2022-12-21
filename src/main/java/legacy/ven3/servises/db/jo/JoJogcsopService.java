@@ -2,6 +2,7 @@ package legacy.ven3.servises.db.jo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +28,7 @@ public class JoJogcsopService {
       return list;
    }
 
-   public JoJogcsop getById(int id) {
+   public JoJogcsop getById(int id) throws NoSuchElementException {
       return repo.findById(id).get();
    }
 
@@ -47,5 +48,11 @@ public class JoJogcsopService {
       if (mock) {
          repo.deleteById(id);
       }
+   }
+
+   public List<JoJogcsop> getByCsopkod(int csopkod) {
+      List<JoJogcsop> list = new ArrayList<JoJogcsop>();
+      repo.findByCsopkod(csopkod).forEach(e -> list.add(e));
+      return list;
    }
 }

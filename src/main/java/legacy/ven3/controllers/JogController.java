@@ -21,15 +21,12 @@ public class JogController {
    @Autowired
    private JogService jogService;
 
-   // private static final Logger LOG =
-   // LoggerFactory.getLogger(JogController.class);
-
    @RequestMapping(value = "/init", method = RequestMethod.GET, produces = "application/json")
    public OkmanyFelhasznalo getUser(HttpServletRequest request) throws Exception {
       try {
          String jwt = jwtUtils.parseJwt(request);
          if (jwtUtils.validateJwtToken(jwt)) {
-            return jogService.init(jwtUtils.getSidFromJwtToken(jwt));
+            return jogService.init(jwtUtils.getSidFromJwtToken(jwt), jwtUtils.getUserNameFromJwtToken(jwt));
          }
 
          return null;

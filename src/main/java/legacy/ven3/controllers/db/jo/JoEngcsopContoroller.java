@@ -38,6 +38,6 @@ public class JoEngcsopContoroller {
    @PostMapping("/save")
    private int save(@RequestBody JoEngcsop d) {
       service.saveOrUpdate(d);
-      return d.ecs_id;
+      return d.id;
    }
 }

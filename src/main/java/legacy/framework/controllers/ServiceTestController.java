@@ -3,6 +3,7 @@ package legacy.framework.controllers;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,10 +14,18 @@ import legacy.framework.models.Item;
 import legacy.framework.models.MenuItem;
 import legacy.framework.models.MockUser;
 import legacy.framework.models.Role;
+import legacy.framework.utils.ControllerUtil;
+import legacy.framework.utils.Util;
 
 @RestController
 @RequestMapping("/api/service-test")
 public class ServiceTestController {
+
+   @Autowired
+   private ControllerUtil controllerUtil;
+
+   @Autowired
+   private Util util;
 
    @RequestMapping(value = "/mockusers", method = RequestMethod.GET, produces = "application/json")
    public List<MockUser> listUsers() {
@@ -37,9 +46,9 @@ public class ServiceTestController {
    public Role roleByUsername(@PathVariable("username") String username) {
       try {
          if (username != null && username.startsWith(Application.MOCK_USER)) {
-            MockUser user = ControllerUtil.findUserByUsername(Application.listMockUsers, username);
+            MockUser user = controllerUtil.findUserByUsername(Application.listMockUsers, username);
             if (user != null) {
-               return ControllerUtil.findRoleByUsername(Application.listMockRoles, username);
+               return controllerUtil.findRoleByUsername(Application.listMockRoles, username);
             }
          }
 
@@ -54,11 +63,11 @@ public class ServiceTestController {
    public List<MenuItem> listMenuItemsByUsername(@PathVariable("username") String username) throws Exception {
       try {
          if (username != null && username.startsWith(Application.MOCK_USER)) {
-            MockUser user = ControllerUtil.findUserByUsername(Application.listMockUsers, username);
+            MockUser user = controllerUtil.findUserByUsername(Application.listMockUsers, username);
             if (user != null) {
-               Role role = ControllerUtil.findRoleByUsername(Application.listMockRoles, username);
+               Role role = controllerUtil.findRoleByUsername(Application.listMockRoles, username);
                if (role != null) {
-                  return ControllerUtil.getMenuItemsByRole(Application.listMenuItem, role);
+                  return controllerUtil.getMenuItemsByRole(Application.listMenuItem, role);
                }
             }
          }
@@ -75,13 +84,13 @@ public class ServiceTestController {
 
       try {
          if (username != null && username.startsWith(Application.MOCK_USER)) {
-            MockUser user = ControllerUtil.findUserByUsername(Application.listMockUsers, username);
+            MockUser user = controllerUtil.findUserByUsername(Application.listMockUsers, username);
             if (user != null) {
-               Role role = ControllerUtil.findRoleByUsername(Application.listMockRoles, username);
+               Role role = controllerUtil.findRoleByUsername(Application.listMockRoles, username);
                if (role != null) {
-                  List<MenuItem> list = ControllerUtil.getMenuItemsByRole(Application.listMenuItem, role);
+                  List<MenuItem> list = controllerUtil.getMenuItemsByRole(Application.listMenuItem, role);
                   Collections.sort(list, (o1, o2) -> o1.getId().compareTo(o2.getId()));
-                  return ControllerUtil.getOptimalMenuItems(list);
+                  return util.getOptimalMenuItems(list);
                }
             }
          }
@@ -95,6 +104,6 @@ public class ServiceTestController {
 
    @RequestMapping(value = "/menu/{username}", method = RequestMethod.GET, produces = "application/json")
    public List<Item> getMenuByUsername(@PathVariable("username") String username) {
-      return ControllerUtil.getMenuByMockUsername(username);
+      return controllerUtil.getMenuByMockUsername(username);
    }
 }

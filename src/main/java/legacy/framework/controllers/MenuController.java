@@ -13,6 +13,7 @@ import legacy.Application;
 import legacy.framework.models.Item;
 import legacy.framework.security.ExternalServiceMenu;
 import legacy.framework.security.jwt.JwtUtils;
+import legacy.framework.utils.ControllerUtil;
 
 @RestController
 @RequestMapping("/api/service-menu")
@@ -21,10 +22,10 @@ public class MenuController {
    private JwtUtils jwtUtils;
 
    @Autowired
-   private ExternalServiceMenu externalServiceMenu;
+   private ControllerUtil controllerUtil;
 
-   // private static final Logger LOG =
-   // LoggerFactory.getLogger(MenuController.class);
+   @Autowired
+   private ExternalServiceMenu externalServiceMenu;
 
    @RequestMapping(value = "/menu", method = RequestMethod.GET, produces = "application/json")
    public List<Item> listMenus(HttpServletRequest request) throws Exception {
@@ -34,7 +35,7 @@ public class MenuController {
             String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
             if (username.startsWith(Application.MOCK_USER)) {
-               return ControllerUtil.getMenuByMockUsername(username);
+               return controllerUtil.getMenuByMockUsername(username);
             } else {
                return externalServiceMenu.get(jwtUtils.getUserNameFromJwtToken(jwt));
             }

@@ -3,6 +3,7 @@ package legacy.ven3.models;
 import java.util.Arrays;
 import java.util.List;
 
+import legacy.framework.models.MenuItem;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,10 +14,11 @@ public class OkmanyFelhasznalo {
    private String userAzon;
    private String userName;
    private int[] jogok;
-   private AktOI aktOI;
+   private OI aktOI;
    private String szigszkod;
    private int szervtip;
-   private List<AktOI> enabledOI;
+   private List<OI> enabledOI;
+   private List<MenuItem> menu;
 
    @Override
    public String toString() {

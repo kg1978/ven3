@@ -38,6 +38,6 @@ public class JoAufelhContoroller {
    @PostMapping("/save")
    private int save(@RequestBody JoAufelh d) {
       service.saveOrUpdate(d);
-      return d.fel_id;
+      return d.id;
    }
 }

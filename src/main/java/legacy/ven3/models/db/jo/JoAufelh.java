@@ -12,44 +12,44 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "jo_aufelh", uniqueConstraints = { @UniqueConstraint(columnNames = "fel_id") })
+@Table(name = "jo_aufelh", uniqueConstraints = @UniqueConstraint(columnNames = { "fel_id", "fel_felhazon" }))
 public class JoAufelh {
    @Id
    @NotNull
    @Column(name = "fel_id")
-   public int fel_id;
+   public int id;
 
    @NotBlank
    @Column(name = "fel_felhazon")
    @Size(max = 20)
-   public String fel_felhazon;
+   public String felhazon;
 
    @NotBlank
    @Column(name = "fel_szkod")
    @Size(max = 6)
-   public String fel_szkod;
+   public String szkod;
 
    @NotBlank
    @Column(name = "fel_nev")
    @Size(max = 50)
-   public String fel_nev;
+   public String nev;
 
    @NotBlank
    @Column(name = "fel_ervtol")
-   public Date fel_ervtol;
+   public Date ervtol;
 
    @NotBlank
    @Column(name = "fel_ervig")
-   public Date fel_ervig;
+   public Date ervig;
 
    @NotBlank
    @Column(name = "fel_forras")
    @Size(max = 3)
-   public String fel_forras;
+   public String forras;
 
    @Override
    public String toString() {
-      return "JoAufelh [fel_id=" + fel_id + ", fel_felhazon=" + fel_felhazon + ", fel_szkod=" + fel_szkod + ", fel_nev="
-            + fel_nev + ", fel_ervtol=" + fel_ervtol + ", fel_ervig=" + fel_ervig + ", fel_forras=" + fel_forras + "]";
+      return "JoAufelh [id=" + id + ", felhazon=" + felhazon + ", szkod=" + szkod + ", nev=" + nev + ", ervtol="
+            + ervtol + ", ervig=" + ervig + ", forras=" + forras + "]";
    }
 }

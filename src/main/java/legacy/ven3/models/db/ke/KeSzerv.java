@@ -18,145 +18,142 @@ public class KeSzerv {
    @NotBlank
    @Column(name = "sze_szkod")
    @Size(max = 6)
-   public String sze_szkod;
+   public String szkod;
 
    @NotNull
    @Column(name = "sze_tipus")
-   public int sze_tipus;
+   public int tipus;
 
    @NotNull
    @Column(name = "sze_jelleg")
-   public int sze_jelleg;
+   public int jelleg;
 
    @NotNull
    @Column(name = "sze_allapot")
-   public int sze_allapot;
+   public int allapot;
 
    @NotNull
    @Column(name = "sze_szekh_taz")
-   public int sze_szekh_taz;
+   public int szekh_taz;
 
    @Column(name = "sze_szekh_mbkod")
    @Size(max = 3)
-   public String sze_szekh_mbkod;
+   public String szekh_mbkod;
 
    @NotNull
    @Column(name = "sze_ervtol")
-   public Date sze_ervtol;
+   public Date ervtol;
 
    @Column(name = "sze_ervig")
-   public Date sze_ervig;
+   public Date ervig;
 
    @NotBlank
    @Column(name = "sze_iszkod")
    @Size(max = 6)
-   public String sze_iszkod;
+   public String iszkod;
 
    @Column(name = "sze_avnyaz")
    @Size(max = 9)
-   public String sze_avnyaz;
+   public String avnyaz;
 
    @Column(name = "sze_mbkod")
    @Size(max = 3)
-   public String sze_mbkod;
+   public String mbkod;
 
    @Column(name = "sze_nev")
    @Size(max = 100)
-   public String sze_nev;
+   public String nev;
 
    @Column(name = "sze_cim")
    @Size(max = 70)
-   public String sze_cim;
+   public String cim;
 
    @Column(name = "sze_pir")
    @Size(max = 4)
-   public String sze_pir;
+   public String pir;
 
    @Column(name = "sze_szlszkod")
-   public int sze_szlszkod;
+   public int szlszkod;
 
    @Column(name = "sze_telnev")
    @Size(max = 27)
-   public String sze_telnev;
+   public String telnev;
 
    @Column(name = "sze_mduser")
-   public int sze_mduser;
+   public int mduser;
 
    @Column(name = "sze_mddat")
-   public Date sze_mddat;
+   public Date mddat;
 
    @Column(name = "sze_nevszla")
    @Size(max = 100)
-   public String sze_nevszla;
+   public String nevszla;
 
    @Column(name = "sze_pirszla")
    @Size(max = 4)
-   public String sze_pirszla;
+   public String pirszla;
 
    @Column(name = "sze_telnevszla")
    @Size(max = 27)
-   public String sze_telnevszla;
+   public String telnevszla;
 
    @Column(name = "sze_cimszla")
    @Size(max = 70)
-   public String sze_cimszla;
+   public String cimszla;
 
    @Column(name = "sze_szlaszla")
    @Size(max = 24)
-   public String sze_szlaszla;
+   public String szlaszla;
 
    @Column(name = "sze_teljesnev1")
    @Size(max = 55)
-   public String sze_teljesnev1;
+   public String teljesnev1;
 
    @Column(name = "sze_teljesnev2")
    @Size(max = 55)
-   public String sze_teljesnev2;
+   public String teljesnev2;
 
    @Column(name = "sze_teljesnev3")
    @Size(max = 55)
-   public String sze_teljesnev3;
+   public String teljesnev3;
 
    @Column(name = "sze_teljesnev4")
    @Size(max = 55)
-   public String sze_teljesnev4;
+   public String teljesnev4;
 
    @Column(name = "sze_fix_nev")
    @Size(max = 100)
-   public String sze_fix_nev;
+   public String fix_nev;
 
    @Column(name = "sze_merit")
    @Size(max = 4)
-   public String sze_merit;
+   public String merit;
 
    @Column(name = "sze_fk_id")
-   public int sze_fk_id;
+   public int fk_id;
 
    @Column(name = "sze_adoszam")
    @Size(max = 11)
-   public String sze_adoszam;
+   public String adoszam;
 
    @Column(name = "sze_kiemelt")
    @Size(max = 2)
-   public String sze_kiemelt;
+   public String kiemelt;
 
    @Column(name = "sze_telep_kiemelt")
    @Size(max = 2)
-   public String sze_telep_kiemelt;
+   public String telep_kiemelt;
 
    @Override
    public String toString() {
-      return "KeSzerv [sze_szkod=" + sze_szkod + ", sze_tipus=" + sze_tipus + ", sze_jelleg=" + sze_jelleg
-            + ", sze_allapot=" + sze_allapot + ", sze_szekh_taz=" + sze_szekh_taz + ", sze_szekh_mbkod="
-            + sze_szekh_mbkod + ", sze_ervtol=" + sze_ervtol + ", sze_ervig=" + sze_ervig + ", sze_iszkod=" + sze_iszkod
-            + ", sze_avnyaz=" + sze_avnyaz + ", sze_mbkod=" + sze_mbkod + ", sze_nev=" + sze_nev + ", sze_cim="
-            + sze_cim + ", sze_pir=" + sze_pir + ", sze_szlszkod=" + sze_szlszkod + ", sze_telnev=" + sze_telnev
-            + ", sze_mduser=" + sze_mduser + ", sze_mddat=" + sze_mddat + ", sze_nevszla=" + sze_nevszla
-            + ", sze_pirszla=" + sze_pirszla + ", sze_telnevszla=" + sze_telnevszla + ", sze_cimszla=" + sze_cimszla
-            + ", sze_szlaszla=" + sze_szlaszla + ", sze_teljesnev1=" + sze_teljesnev1 + ", sze_teljesnev2="
-            + sze_teljesnev2 + ", sze_teljesnev3=" + sze_teljesnev3 + ", sze_teljesnev4=" + sze_teljesnev4
-            + ", sze_fix_nev=" + sze_fix_nev + ", sze_merit=" + sze_merit + ", sze_fk_id=" + sze_fk_id
-            + ", sze_adoszam=" + sze_adoszam + ", sze_kiemelt=" + sze_kiemelt + ", sze_telep_kiemelt="
-            + sze_telep_kiemelt + "]";
+      return "KeSzerv [szkod=" + szkod + ", tipus=" + tipus + ", jelleg=" + jelleg + ", allapot=" + allapot
+            + ", szekh_taz=" + szekh_taz + ", szekh_mbkod=" + szekh_mbkod + ", ervtol=" + ervtol + ", ervig=" + ervig
+            + ", iszkod=" + iszkod + ", avnyaz=" + avnyaz + ", mbkod=" + mbkod + ", nev=" + nev + ", cim=" + cim
+            + ", pir=" + pir + ", szlszkod=" + szlszkod + ", telnev=" + telnev + ", mduser=" + mduser + ", mddat="
+            + mddat + ", nevszla=" + nevszla + ", pirszla=" + pirszla + ", telnevszla=" + telnevszla + ", cimszla="
+            + cimszla + ", szlaszla=" + szlaszla + ", teljesnev1=" + teljesnev1 + ", teljesnev2=" + teljesnev2
+            + ", teljesnev3=" + teljesnev3 + ", teljesnev4=" + teljesnev4 + ", fix_nev=" + fix_nev + ", merit=" + merit
+            + ", fk_id=" + fk_id + ", adoszam=" + adoszam + ", kiemelt=" + kiemelt + ", telep_kiemelt=" + telep_kiemelt
+            + "]";
    }
 }

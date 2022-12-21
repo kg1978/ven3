@@ -38,6 +38,6 @@ public class KeOIContoroller {
    @PostMapping("/save")
    private String save(@RequestBody KeOI keOI) {
       service.saveOrUpdate(keOI);
-      return keOI.oi_oiszkod;
+      return keOI.oiszkod;
    }
 }

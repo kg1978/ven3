@@ -2,6 +2,7 @@ package legacy.ven3.servises.db.ke;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +28,7 @@ public class KeOIService {
       return list;
    }
 
-   public KeOI getById(String id) {
+   public KeOI getById(String id) throws NoSuchElementException {
       return repo.findById(id).get();
    }
 

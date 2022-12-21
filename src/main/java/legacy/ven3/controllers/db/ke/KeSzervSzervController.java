@@ -38,6 +38,6 @@ public class KeSzervSzervController {
    @PostMapping("/save")
    private int save(@RequestBody KeSzervSzerv keSzervSzerv) {
       service.saveOrUpdate(keSzervSzerv);
-      return keSzervSzerv.sz_id;
+      return keSzervSzerv.id;
    }
 }

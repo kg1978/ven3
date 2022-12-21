@@ -13,18 +13,18 @@ public class JoJogcsop {
    @Id
    @NotNull
    @Column(name = "csj_id")
-   public int csj_id;
+   public int id;
 
    @NotNull
    @Column(name = "csj_jogkod")
-   public int csj_jogkod;
+   public int jogkod;
 
    @NotNull
    @Column(name = "csj_csopkod")
-   public int csj_csopkod;
+   public int csopkod;
 
    @Override
    public String toString() {
-      return "JoJogcsop [csj_id=" + csj_id + ", csj_jogkod=" + csj_jogkod + ", csj_csopkod=" + csj_csopkod + "]";
+      return "JoJogcsop [id=" + id + ", jogkod=" + jogkod + ", csopkod=" + csopkod + "]";
    }
 }

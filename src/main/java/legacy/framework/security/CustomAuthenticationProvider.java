@@ -1,5 +1,7 @@
 package legacy.framework.security;
 
+import java.util.NoSuchElementException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +38,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                return createSuccessfulAuthentication(authentication, user);
             }
          } catch (UnPwException e) {
-            throw new BadCredentialsException("UnPwException exception");
+            throw new BadCredentialsException("UnPwException UnPwAuth exception");
+         } catch (NoSuchElementException e) {
+            throw new BadCredentialsException("NoSuchElementException JoAufelh exception");
          } catch (UserExpiredException e) {
-            throw new BadCredentialsException("UserExpiredException exception");
+            throw new BadCredentialsException("UserExpiredException JoAufelh exception");
          }
       }
 
