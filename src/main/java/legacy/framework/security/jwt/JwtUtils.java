@@ -43,7 +43,7 @@ public class JwtUtils {
 
       UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-      return Jwts.builder().setSubject((userPrincipal.getUsername())).setId(userPrincipal.getSid())
+      return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuer(userPrincipal.getSid())
             .setIssuedAt(new Date()).setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
             .signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
    }
@@ -53,7 +53,7 @@ public class JwtUtils {
    }
 
    public String getSidFromJwtToken(String token) {
-      return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getId();
+      return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getIssuer();
    }
 
    public boolean validateJwtToken(String authToken) {

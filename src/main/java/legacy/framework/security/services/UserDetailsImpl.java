@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import legacy.framework.models.MockUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,10 +33,6 @@ public class UserDetailsImpl implements UserDetails {
       this.username = username;
       this.password = password;
       this.sid = sid;
-   }
-
-   public static UserDetailsImpl build(MockUser user) {
-      return new UserDetailsImpl(user.getUsername(), user.getPassword());
    }
 
    @Override

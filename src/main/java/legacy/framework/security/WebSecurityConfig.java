@@ -43,8 +43,8 @@ public class WebSecurityConfig {
    }
 
    @Bean
-   public CustomAuthenticationProvider customAuthenticationProvider() {
-      CustomAuthenticationProvider authenticationProvider = new CustomAuthenticationProvider();
+   public ExternalAuthenticationProvider customAuthenticationProvider() {
+      ExternalAuthenticationProvider authenticationProvider = new ExternalAuthenticationProvider();
       return authenticationProvider;
    }
 

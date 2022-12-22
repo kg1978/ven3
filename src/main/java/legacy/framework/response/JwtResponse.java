@@ -7,24 +7,13 @@ import lombok.Setter;
 @Getter
 public class JwtResponse {
    private String token;
-   private String type = "Bearer";
-   private String username;
-   private String sid;
 
-   public JwtResponse(String accessToken, String username) {
+   public JwtResponse(String accessToken) {
       this.token = accessToken;
-      this.username = username;
-      this.sid = "";
-   }
-
-   public JwtResponse(String accessToken, String username, String sid) {
-      this.token = accessToken;
-      this.username = username;
-      this.sid = sid;
    }
 
    @Override
    public String toString() {
-      return "JwtResponse [token=" + token + ", type=" + type + ", username=" + username + ", sid=" + sid + "]";
+      return "JwtResponse [token=" + token + "]";
    }
 }

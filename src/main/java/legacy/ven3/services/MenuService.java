@@ -2,6 +2,7 @@ package legacy.ven3.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +13,16 @@ import legacy.framework.security.ExternalServiceMenu;
 @Component
 public class MenuService implements ExternalServiceMenu {
 
+   @Value("${http.services.menu}")
+   private boolean useHttp;
+
    @Override
-   public List<Item> get(String sid) {
+   public List<Item> getMenu(String sid) {
+      if (useHttp) {
+         return null;
+      } else {
+
+      }
       return null;
    }
 }

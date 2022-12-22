@@ -16,12 +16,12 @@ import legacy.framework.security.exceptions.UnPwException;
 import legacy.framework.security.exceptions.UserExpiredException;
 import legacy.framework.security.services.UserDetailsImpl;
 
-public class CustomAuthenticationProvider implements AuthenticationProvider {
+public class ExternalAuthenticationProvider implements AuthenticationProvider {
 
-   private static Logger LOG = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
+   private static Logger LOG = LoggerFactory.getLogger(ExternalAuthenticationProvider.class);
 
    @Autowired
-   private ExternalServiceAuthentication externalServiceAuthentication;
+   private ExternalServiceLogin externalServiceAuthentication;
 
    @Override
    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -33,10 +33,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
       if (username != null && password != null && !username.isEmpty() && !password.isEmpty()) {
 
          try {
-            if (externalServiceAuthentication.authentication(username, password)) {
-               UserDetails user = new UserDetailsImpl(username, password);
-               return createSuccessfulAuthentication(authentication, user);
-            }
+            String sid = externalServiceAuthentication.authentication(username, password);
+            UserDetails user = new UserDetailsImpl(username, password, sid);
+            return createSuccessfulAuthentication(authentication, user);
          } catch (UnPwException e) {
             throw new BadCredentialsException("UnPwException UnPwAuth exception");
          } catch (NoSuchElementException e) {
