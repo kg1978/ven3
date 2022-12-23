@@ -3,7 +3,7 @@ package legacy.framework.security;
 import legacy.framework.security.exceptions.UnPwException;
 import legacy.framework.security.exceptions.UserExpiredException;
 
-public interface ExternalServiceLogin {
+public interface ExternalServiceAuthentication {
    /**
     * @return String sid
     */

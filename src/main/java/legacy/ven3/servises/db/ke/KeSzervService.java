@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import legacy.ven3.models.KeSzervMin;
 import legacy.ven3.models.db.ke.KeSzerv;
 import legacy.ven3.repository.ke.KeSzervRepository;
 
@@ -57,32 +56,32 @@ public class KeSzervService {
       return list;
    }
 
-   public List<KeSzervMin> querySzervTip4By(int fel_id) {
-      List<KeSzervMin> list = new ArrayList<KeSzervMin>();
+   public List<KeSzerv> querySzervTip4By(int fel_id) {
+      List<KeSzerv> list = new ArrayList<KeSzerv>();
       repo.querySzervTip4By(fel_id).forEach(e -> list.add(e));
       return list;
    }
 
-   public List<KeSzervMin> querySzervTip5By(int fel_id) {
-      List<KeSzervMin> list = new ArrayList<KeSzervMin>();
+   public List<KeSzerv> querySzervTip5By(int fel_id) {
+      List<KeSzerv> list = new ArrayList<KeSzerv>();
       repo.querySzervTip5By(fel_id).forEach(e -> list.add(e));
       return list;
    }
 
-   public List<KeSzervMin> querySzervTip7By(int fel_id) {
-      List<KeSzervMin> list = new ArrayList<KeSzervMin>();
+   public List<KeSzerv> querySzervTip7By(int fel_id) {
+      List<KeSzerv> list = new ArrayList<KeSzerv>();
       repo.querySzervTip7By(fel_id).forEach(e -> list.add(e));
       return list;
    }
 
-   public List<KeSzervMin> queryRegioBy(int fel_id) {
-      List<KeSzervMin> list = new ArrayList<KeSzervMin>();
+   public List<KeSzerv> queryRegioBy(int fel_id) {
+      List<KeSzerv> list = new ArrayList<KeSzerv>();
       repo.queryRegioBy(fel_id).forEach(e -> list.add(e));
       return list;
    }
 
-   public List<KeSzervMin> queryMegyeBy(int fel_id) {
-      List<KeSzervMin> list = new ArrayList<KeSzervMin>();
+   public List<KeSzerv> queryMegyeBy(int fel_id) {
+      List<KeSzerv> list = new ArrayList<KeSzerv>();
       repo.queryMegyeBy(fel_id).forEach(e -> list.add(e));
       return list;
    }

@@ -21,7 +21,7 @@ public class ExternalAuthenticationProvider implements AuthenticationProvider {
    private static Logger LOG = LoggerFactory.getLogger(ExternalAuthenticationProvider.class);
 
    @Autowired
-   private ExternalServiceLogin externalServiceAuthentication;
+   private ExternalServiceAuthentication externalServiceAuthentication;
 
    @Override
    public Authentication authenticate(Authentication authentication) throws AuthenticationException {

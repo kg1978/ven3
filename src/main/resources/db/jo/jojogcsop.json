@@ -72,5 +72,6 @@
 	{ "id": 71, "jogkod": 1096, "csopkod": 1 },
 	{ "id": 72, "jogkod": 1098, "csopkod": 1 },
 	{ "id": 73, "jogkod": 1101, "csopkod": 1 },
-	{ "id": 74, "jogkod": 1102, "csopkod": 1 }
+	{ "id": 74, "jogkod": 1102, "csopkod": 1 },
+	{ "id": 75, "jogkod": 21, "csopkod": 1 }
 ]

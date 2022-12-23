@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import legacy.framework.crypt.PasswordChecker;
-import legacy.framework.security.ExternalServiceLogin;
+import legacy.framework.security.ExternalServiceAuthentication;
 import legacy.framework.security.exceptions.UnPwException;
 import legacy.framework.security.exceptions.UserExpiredException;
 import legacy.framework.utils.Util;
@@ -19,7 +19,7 @@ import legacy.ven3.servises.db.jo.JoAufelhService;
 
 @Service
 @Component
-public class LoginService implements ExternalServiceLogin {
+public class LoginService implements ExternalServiceAuthentication {
 
    @Value("${http.services.login}")
    private boolean useHttp;

@@ -3,7 +3,7 @@ package legacy.ven3.models;
 import java.util.Arrays;
 import java.util.List;
 
-import legacy.framework.models.MenuItem;
+import legacy.framework.models.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +18,7 @@ public class OkmanyFelhasznalo {
    private String szigszkod;
    private int szervtip;
    private List<OI> enabledOI;
-   private List<MenuItem> menu;
+   private List<Item> menu;
 
    @Override
    public String toString() {

@@ -3,13 +3,28 @@ package legacy.ven3.models.db.ke;
 import java.sql.Date;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import legacy.ven3.repository.ke.KeSzervRepository;
+
+@SqlResultSetMapping(name = "querySzervTip", classes = { @ConstructorResult(targetClass = KeSzerv.class, columns = {
+      @ColumnResult(name = "szkod"), @ColumnResult(name = "nev"), @ColumnResult(name = "mbkod") }) })
+
+@NamedNativeQuery(name = KeSzervRepository.Q_querySzervTip4By, resultSetMapping = "querySzervTip", resultClass = KeSzerv.class, query = KeSzervRepository.querySzervTip4By)
+@NamedNativeQuery(name = KeSzervRepository.Q_querySzervTip5By, resultSetMapping = "querySzervTip", resultClass = KeSzerv.class, query = KeSzervRepository.querySzervTip5By)
+@NamedNativeQuery(name = KeSzervRepository.Q_querySzervTip7By, resultSetMapping = "querySzervTip", resultClass = KeSzerv.class, query = KeSzervRepository.querySzervTip7By)
+@NamedNativeQuery(name = KeSzervRepository.Q_queryRegio, resultSetMapping = "querySzervTip", resultClass = KeSzerv.class, query = KeSzervRepository.queryRegio)
+@NamedNativeQuery(name = KeSzervRepository.Q_queryMegye, resultSetMapping = "querySzervTip", resultClass = KeSzerv.class, query = KeSzervRepository.queryMegye)
 
 @Entity
 @Table(name = "ke_szerv", uniqueConstraints = { @UniqueConstraint(columnNames = "sze_szkod") })
@@ -143,6 +158,17 @@ public class KeSzerv {
    @Column(name = "sze_telep_kiemelt")
    @Size(max = 2)
    public String telep_kiemelt;
+
+   public KeSzerv() {
+      super();
+   }
+
+   public KeSzerv(@NotBlank @Size(max = 6) String szkod, @Size(max = 3) String mbkod, @Size(max = 100) String nev) {
+      super();
+      this.szkod = szkod;
+      this.mbkod = mbkod;
+      this.nev = nev;
+   }
 
    @Override
    public String toString() {

@@ -86,6 +86,7 @@ public class JogService {
          boolean regioJog = IntStream.of(jogok).anyMatch(x -> x == 80);
 
          okmanyFelhasznalo.setUserCode(Integer.toString(joAufelh.id));
+         okmanyFelhasznalo.setUserAzon(joAufelh.szkod);
          okmanyFelhasznalo.setAktOI(aktOI);
          okmanyFelhasznalo.setUserName(username);
          okmanyFelhasznalo.setSzervtip(keSzerv.tipus);
@@ -99,24 +100,27 @@ public class JogService {
             KeOI keoi = keOIService.getById(keSzerv.szkod);
             okmanyFelhasznalo.setSzigszkod(keoi.szigszkod);
 
+            LOG.debug("megyeJog: " + megyeJog + " kozpontiJog: " + kozpontiJog + " regioJog: " + regioJog);
+
             // Enabled OI
             if (!megyeJog && !regioJog && !kozpontiJog) {
+               LOG.debug("Enabled OI semmi");
                List<OI> l = new ArrayList<OI>();
                okmanyFelhasznalo.setEnabledOI(l);
             } else {
                if (szervTip == 5) {
-                  okmanyFelhasznalo.setEnabledOI(util.getOImin(keSzervService.querySzervTip5By(joAufelh.id)));
+                  okmanyFelhasznalo.setEnabledOI(util.getOI(keSzervService.querySzervTip5By(joAufelh.id)));
                } else if (szervTip == 7) {
-                  okmanyFelhasznalo.setEnabledOI(util.getOImin(keSzervService.querySzervTip7By(joAufelh.id)));
+                  okmanyFelhasznalo.setEnabledOI(util.getOI(keSzervService.querySzervTip7By(joAufelh.id)));
                } else if (szervTip == 4) {
-                  okmanyFelhasznalo.setEnabledOI(util.getOImin(keSzervService.querySzervTip4By(joAufelh.id)));
+                  okmanyFelhasznalo.setEnabledOI(util.getOI(keSzervService.querySzervTip4By(joAufelh.id)));
                } else if (szervTip == 3) {
                   if (kozpontiJog)
                      okmanyFelhasznalo.setEnabledOI(util.getOI(keSzervService.getByTipus(3)));
                   else if (regioJog && !kozpontiJog)
-                     okmanyFelhasznalo.setEnabledOI(util.getOImin(keSzervService.queryRegioBy(joAufelh.id)));
+                     okmanyFelhasznalo.setEnabledOI(util.getOI(keSzervService.queryRegioBy(joAufelh.id)));
                   else if (megyeJog)
-                     okmanyFelhasznalo.setEnabledOI(util.getOImin(keSzervService.queryMegyeBy(joAufelh.id)));
+                     okmanyFelhasznalo.setEnabledOI(util.getOI(keSzervService.queryMegyeBy(joAufelh.id)));
                }
             }
          }
@@ -124,7 +128,9 @@ public class JogService {
 
       List<MenuItem> list = util.getMenuItemsByJogkod(Application.listMenuItem, okmanyFelhasznalo.getJogok());
       Collections.sort(list, (o1, o2) -> o1.getId().compareTo(o2.getId()));
-      okmanyFelhasznalo.setMenu(util.getOptimalMenuItems(list));
+      okmanyFelhasznalo.setMenu(util.getMenu(util.getOptimalMenuItems(list)));
+
+      LOG.debug("okmanyFelhasznalo: " + okmanyFelhasznalo.toString());
 
       return okmanyFelhasznalo;
    }

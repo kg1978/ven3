@@ -28,7 +28,6 @@ import legacy.framework.models.Item;
 import legacy.framework.models.MenuItem;
 import legacy.framework.models.MockUser;
 import legacy.framework.models.Role;
-import legacy.ven3.models.KeSzervMin;
 import legacy.ven3.models.OI;
 import legacy.ven3.models.SzervRec;
 import legacy.ven3.models.db.jo.JoJogcsop;
@@ -106,16 +105,6 @@ public class Util {
       for (KeSzerv keSzerv : szervlist) {
          oIList.add(new OI(keSzerv.szkod, keSzerv.nev,
                new SzervRec(keSzerv.szkod, keSzerv.nev, keSzerv.mbkod, 3, keSzerv.iszkod, keSzerv.nev)));
-      }
-      return oIList;
-   }
-
-   public List<OI> getOImin(List<KeSzervMin> szervlist) {
-      List<OI> oIList = new ArrayList<OI>();
-
-      for (KeSzervMin keSzerv : szervlist) {
-         oIList.add(new OI(keSzerv.szkod, keSzerv.nev,
-               new SzervRec(keSzerv.szkod, keSzerv.nev, keSzerv.mbkod, 3, keSzerv.szkod, keSzerv.nev)));
       }
       return oIList;
    }
