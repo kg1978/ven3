@@ -102,5 +102,7 @@
 
 	{"jog":"-1", "id":"6000", "pid":"0", "name":"Dokumentumok", "url":""},
 		{"jog":"1051", "id":"6100", "pid":"6000", "name":"Dokumentumok karbantartása", "url":"/dokumentum-karb"},
-		{"jog":"1101", "id":"6200", "pid":"6000", "name":"Dokumentumok lekérése",      "url":"/dokumentum-lek"}
+		{"jog":"1101", "id":"6200", "pid":"6000", "name":"Dokumentumok lekérése",      "url":"/dokumentum-lek"},
+		
+	{"jog":"0", "id":"7000", "pid":"0", "name":"Kijelentkezés", "url":"/kijelentkezes"}
 ]

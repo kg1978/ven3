@@ -113,7 +113,7 @@ public class Util {
       List<MenuItem> list = new ArrayList<>();
       if (listMenuItem != null && jogok != null) {
          for (MenuItem m : listMenuItem) {
-            if (m.getJog().equals(Role.JOGKOD_PUBLIKUS)
+            if (m.getJog().equals(Role.JOGKOD_PUBLIKUS) || m.getJog().equals(Role.JOGKOD_MINDENKI)
                   || IntStream.of(jogok).anyMatch(x -> x == Integer.parseInt(m.getJog()))) {
                list.add(m);
             }

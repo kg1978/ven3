@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 public class Role {
    public static final String JOGKOD_PUBLIKUS = "-1";
+   public static final String JOGKOD_MINDENKI = "0";
 
    private String username;
    private List<String> jogkod;
